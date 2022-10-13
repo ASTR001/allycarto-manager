@@ -48,7 +48,7 @@ class MapScreenState extends State<ProfilePage>
       mynamee = prefs.getString("mynamee") ?? "";
       myphone = prefs.getString("mymobile") ?? "";
       myemail = prefs.getString("myemail");
-      myimage = prefs.getString("myimage");
+      // myimage = prefs.getString("myimage");
 
       _controller_mob.text = myphone.toString();
       _controller_username.text = mynamee.toString();
@@ -271,10 +271,12 @@ class MapScreenState extends State<ProfilePage>
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       margin: EdgeInsets.only(left: 20, right: 20, bottom: 0),
-                      child: FlatButton(
+                      child: ElevatedButton(
                         child: Text('LOGOUT'),
-                        color: Colors.redAccent,
-                        textColor: Colors.white,
+                        style: ElevatedButton.styleFrom(
+                            primary: Colors.redAccent,
+                            textStyle: TextStyle(
+                                color: Colors.white)),
                         onPressed: () {
                           logoutSts();
                         },
@@ -306,15 +308,17 @@ class MapScreenState extends State<ProfilePage>
             child: Padding(
               padding: EdgeInsets.only(right: 10.0),
               child: Container(
-                  child: new RaisedButton(
+                  child: new ElevatedButton(
                 child: new Text("Save"),
-                textColor: Colors.white,
-                color: Colors.green,
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.green,
+                        shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(20.0)),
+                        textStyle: TextStyle(
+                            color: Colors.white)),
                 onPressed: () {
                   updateData();
                 },
-                shape: new RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(20.0)),
               )),
             ),
             flex: 2,
@@ -323,18 +327,20 @@ class MapScreenState extends State<ProfilePage>
             child: Padding(
               padding: EdgeInsets.only(left: 10.0),
               child: Container(
-                  child: new RaisedButton(
+                  child: new ElevatedButton(
                 child: new Text("Cancel"),
-                textColor: Colors.white,
-                color: Colors.red,
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.red,
+                        shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(20.0)),
+                        textStyle: TextStyle(
+                            color: Colors.white)),
                 onPressed: () {
                   setState(() {
                     _status = true;
                     FocusScope.of(context).requestFocus(new FocusNode());
                   });
                 },
-                shape: new RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(20.0)),
               )),
             ),
             flex: 2,

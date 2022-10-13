@@ -42,9 +42,6 @@ class _DistDashboardState extends State<MyVendors> {
           'Accept': 'application/json',
         });
 
-    print("aaaaaaaaaaa : "+API_GET_VENDORS + myidd);
-    print("aaaaaaaaaaa : "+response.body);
-
     if (mounted) {
       setState(() {
         // getTruckData();
@@ -52,6 +49,9 @@ class _DistDashboardState extends State<MyVendors> {
         vendorListData = dataConvertedToJSON;
       });
     }
+
+    print("aaaaaaaaaaabbbbbb : "+vendorListData[9].toString());
+    print("aaaaaaaaaaabbbbbb : "+vendorListData[10].toString());
 
     return "Success";
   }
@@ -74,12 +74,17 @@ class _DistDashboardState extends State<MyVendors> {
                 width: MediaQuery.of(context).size.width * 5,
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
-                  child: RaisedButton(
+                  child: ElevatedButton(
                     onPressed: () {
                       Navigator.of(context).push(
                           MaterialPageRoute(builder: (BuildContext context) => AddVendor(idd: myidd,)));
                     },
-                    color: Theme.of(context).accentColor,
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.redAccent,
+                        shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(20.0)),
+                        textStyle: TextStyle(
+                            color: Colors.white)),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
@@ -119,7 +124,7 @@ class _DistDashboardState extends State<MyVendors> {
         child: Text("Data Not Found!"),
       ),
     )
-        : Container(
+        : Expanded(
       child: GridView.builder(
         itemCount: vendorListData.length,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
